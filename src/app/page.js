@@ -31,7 +31,7 @@ export default function Home() {
           rel="noopener noreferrer"
         >
           <h2 className={`${inter.className} mb-3 text-md font-semibold`}>
-            누르지 마세요. 제발{" "}
+            누르지 마세요. 제발
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
