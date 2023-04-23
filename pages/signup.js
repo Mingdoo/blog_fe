@@ -22,6 +22,7 @@ import {
   OutlinedInput,
   Select,
 } from "@mui/material";
+import { useRouter } from "next/router";
 
 function Copyright(props) {
   return (
@@ -33,7 +34,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://github.com/mingdoo">
-        15:18
+        밍수
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -62,6 +63,7 @@ export default function signup() {
   const [isValid, setIsValid] = useState(false);
   const [options, setOptions] = useState([]);
 
+  const router = useRouter();
   const handleChange = (event) => {
     const {
       target: { value },
@@ -88,13 +90,29 @@ export default function signup() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      bizId: data.get("bizId"),
-      bizName: data.get("bizName"),
-      ID: document.getElementById("ID")?.value,
-      password: data.get("password"),
-      passwordConfirmation: data.get("passwordConfirmation"),
-    });
+    fetch("http://localhost:8080/api/signup", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: data.get("name"),
+        ID: document.getElementById("ID").value,
+        password: data.get("password"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status == true) {
+          alert("회원가입에 성공했습니다.");
+          router.push("/signin");
+        } else {
+          alert("회원가입에 실패했습니다.");
+          router.reload();
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   const doConfirmProcess = () => {
@@ -155,27 +173,14 @@ export default function signup() {
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={12}>
               <TextField
-                autoComplete="businessID"
-                name="bizId"
+                autoComplete="name"
+                name="name"
                 required
                 fullWidth
-                type="number"
-                id="bizId"
-                label="business ID"
-                autoFocus
-                className={classes.input}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="businessName"
-                name="bizName"
-                required
-                fullWidth
-                id="bizName"
-                label="business name"
+                id="name"
+                label="name"
                 autoFocus
               />
             </Grid>
@@ -223,53 +228,6 @@ export default function signup() {
                 id="passwordConfirmation"
                 onChange={(event) => onChangePassword(event, "pwConf")}
               />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl sx={{ width: "100%" }}>
-                <InputLabel id="multipleChip">Permitted</InputLabel>
-
-                <Select
-                  labelId="multipleChip"
-                  id="multipleChipSelect"
-                  multiple
-                  value={options}
-                  onChange={handleChange}
-                  input={
-                    <OutlinedInput
-                      id="select-multiple-chip"
-                      label="Permitted"
-                    />
-                  }
-                  renderValue={(selected) => (
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexWrap: "wrap",
-                        gap: 2.5,
-                      }}
-                    >
-                      {selected.map((value) => (
-                        <Chip
-                          key={value}
-                          label={value}
-                          sx={{ backgroundColor: "#3085d6", color: "white" }}
-                        />
-                      ))}
-                    </Box>
-                  )}
-                  MenuProps={MenuProps}
-                >
-                  {values.map((name) => (
-                    <MenuItem
-                      key={name}
-                      value={name}
-                      sx={{ width: "45%", display: "inline-block" }}
-                    >
-                      {name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
             </Grid>
           </Grid>
 

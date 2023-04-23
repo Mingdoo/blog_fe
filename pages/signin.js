@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useRouter } from "next/router";
 
 function Copyright(props) {
   return (
@@ -23,9 +24,9 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://github.com/mingdoo">
-        15:18
+        밍수
       </Link>{" "}
-      2022
+      2023
       {"."}
     </Typography>
   );
@@ -34,13 +35,35 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function signin() {
+  React.useEffect(() => {
+    localStorage.removeItem("login");
+  }, []);
+
+  const router = useRouter();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      ID: data.get("ID"),
-      password: data.get("password"),
-    });
+    fetch("http://localhost:8080/api/signin", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ID: data.get("ID"),
+        password: data.get("password"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status == true) {
+          localStorage.setItem("login", res.status);
+          router.push("/");
+        } else {
+          alert("로그인에 실패했습니다.");
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

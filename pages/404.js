@@ -4,7 +4,7 @@ import React from "react";
 function error() {
   return (
     <Box>
-      <Typography>ERROR</Typography>
+      <Typography>없는 페이지입니다.</Typography>
     </Box>
   );
 }

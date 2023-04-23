@@ -56,7 +56,7 @@ const ProfileDD = () => {
                 ml: 1,
               }}
             >
-              Julia
+              Ming
             </Typography>
             <FeatherIcon icon="chevron-down" width="20" height="20" />
           </Box>
@@ -75,27 +75,6 @@ const ProfileDD = () => {
         }}
       >
         <Box>
-          <Box p={2} pt={0}>
-            <List
-              component="nav"
-              aria-label="secondary mailbox folder"
-              onClick={handleClose4}
-            >
-              <ListItemButton>
-                <ListItemText primary="Edit Profile" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemText primary="Account" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemText primary="Change Password" />
-              </ListItemButton>
-              <ListItemButton>
-                <ListItemText primary="My Settings" />
-              </ListItemButton>
-            </List>
-          </Box>
-          <Divider />
           <Box p={2}>
             <Link href="/signin">
               <Button fullWidth variant="contained" color="primary">

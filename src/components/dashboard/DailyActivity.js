@@ -12,33 +12,38 @@ const activities = [
   {
     time: "09.50",
     color: "success.main",
-    text: "Meeting with John",
+    text: "기상",
   },
   {
     time: "09.46",
     color: "secondary.main",
-    text: "Payment received from John Doe of $385.90",
+    text: "샤워하기",
   },
   {
-    time: "09.47",
+    time: "10.00",
     color: "primary.main",
-    text: "Project Meeting",
+    text: "옷 입기",
   },
   {
-    time: "09.48",
+    time: "10:50",
     color: "warning.main",
-    text: "New Sale recorded #ML-3467",
+    text: "메타폴리스에서 만나기",
   },
   {
-    time: "09.49",
+    time: "11:30",
     color: "error.main",
-    text: "Payment was made of $64.95 to Michael Anderson",
+    text: "밥 먹기",
+  },
+  {
+    time: "12:30",
+    color: "success.main",
+    text: "집 가기",
   },
 ];
 
 const DailyActivity = () => {
   return (
-    <BaseCard title="Daily Activity">
+    <BaseCard title="오늘 데이트 코스">
       <Timeline
         sx={{
           p: 0,

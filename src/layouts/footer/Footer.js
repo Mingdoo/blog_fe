@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <Box sx={{ p: 3, textAlign: "center" }}>
       <Typography>
-        © 2022 All rights reserved by{" "}
+        © 2023 All rights reserved by{" "}
         <Link href="https://www.github.com/mingdoo">
-          <a>15:18</a>
+          <a>밍수</a>
         </Link>{" "}
       </Typography>
     </Box>
