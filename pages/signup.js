@@ -90,7 +90,7 @@ export default function signup() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    fetch("/api/signup", {
+    fetch("http://43.201.73.219/api/signup", {
       method: "POST",
       headers: {
         Accept: "application/json",

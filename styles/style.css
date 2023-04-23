@@ -4,3 +4,12 @@
 .roundedCircle {
   border-radius: 100%;
 }
+
+.rounded-image {
+  border-radius: 9999px;
+}
+
+.border-image {
+  border: 1px solid black;
+  box-shadow: 0 0 0 1px rgba(218, 114, 209, 0.955);
+}

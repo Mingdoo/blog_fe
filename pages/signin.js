@@ -43,7 +43,7 @@ export default function signin() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    fetch("/api/signin", {
+    fetch("http://43.201.73.219/api/signin", {
       method: "POST",
       headers: {
         Accept: "application/json",
