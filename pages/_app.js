@@ -29,7 +29,7 @@ export default function MyApp(props) {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
-        <title>밍뇽이랑밍수</title>
+        <title>Welcome 밍밍</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
